@@ -1,6 +1,6 @@
 {
   "name": "notesgen-validation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "All type of form validations on a website",
   "main": "index.js",
   "scripts": {

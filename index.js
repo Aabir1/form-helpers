@@ -1,12 +1,12 @@
-let ValidationHelper = {};
+let NotesgenValidation = {};
 
-ValidationHelper.DEFAULT_ALLOWED_IMAGE_EXT = [
+NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT = [
     'image/gif', 'image/jpeg', 'image/png', 'image/jpg'
 ];
-ValidationHelper.DEFAULT_MAX_FILE_SIZE = 2; //in mb
+NotesgenValidation.DEFAULT_MAX_FILE_SIZE = 2; //in mb
 
 
-ValidationHelper.isEmpty = (field, isDateField = false) => {
+NotesgenValidation.isEmpty = (field, isDateField = false) => {
     let result = true;
 
     try {
@@ -28,7 +28,7 @@ ValidationHelper.isEmpty = (field, isDateField = false) => {
     return result;
 }
 
-ValidationHelper.minMaxLen = (field, min = 2, max = 256) => {
+NotesgenValidation.minMaxLen = (field, min = 2, max = 256) => {
     let result = false;
 
     if (field) {
@@ -41,7 +41,7 @@ ValidationHelper.minMaxLen = (field, min = 2, max = 256) => {
 }
 
 //validate weather value contains number
-ValidationHelper.containsNumber = (field) => {
+NotesgenValidation.containsNumber = (field) => {
     let result = false;
     if (field.match(/\d+/)) {
         result = true;
@@ -49,7 +49,7 @@ ValidationHelper.containsNumber = (field) => {
     return result;
 }
 //validate weather value contains uppercase
-ValidationHelper.containsUpperCase = (field) => {
+NotesgenValidation.containsUpperCase = (field) => {
     let result = false;
     if (field.match(/[A-Z]/)) {
         result = true;
@@ -57,7 +57,7 @@ ValidationHelper.containsUpperCase = (field) => {
     return result;
 }
 //check weather value only contains numbers
-ValidationHelper.isNumber = (field) => {
+NotesgenValidation.isNumber = (field) => {
     let result = true;
     if (isNaN(field)) {
         result = false;
@@ -66,7 +66,7 @@ ValidationHelper.isNumber = (field) => {
 }
 
 //validate weather value contains special characters
-ValidationHelper.containsSpecialCharacters = (field) => {
+NotesgenValidation.containsSpecialCharacters = (field) => {
     let result = false;
     if (!field.match(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/)) {
         result = true;
@@ -75,7 +75,7 @@ ValidationHelper.containsSpecialCharacters = (field) => {
 }
 
 
-ValidationHelper.isEmail = (email) => {
+NotesgenValidation.isEmail = (email) => {
     let result = false;
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email && re.test(String(email).toLowerCase())) {
@@ -84,7 +84,7 @@ ValidationHelper.isEmail = (email) => {
     return result;
 }
 
-ValidationHelper.isPhone = (phone) => {
+NotesgenValidation.isPhone = (phone) => {
     let result = false;
     if (phone && phone.match(/^\d{8,14}$/)) {
         result = true;
@@ -92,7 +92,7 @@ ValidationHelper.isPhone = (phone) => {
     return result;
 }
 
-ValidationHelper.isUrl = (string) => {
+NotesgenValidation.isUrl = (string) => {
     if (string && (string.includes('http://') || string.includes('')))
         var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -114,7 +114,7 @@ ValidationHelper.isUrl = (string) => {
     return result;
 }
 
-ValidationHelper.getYoutubeUrl = (url) => {
+NotesgenValidation.getYoutubeUrl = (url) => {
     let result = false;
 
     if (url != undefined || url != '') {
@@ -128,7 +128,7 @@ ValidationHelper.getYoutubeUrl = (url) => {
     return result;
 }
 
-ValidationHelper.isImage = (file, allowedImgExt = ValidationHelper.DEFAULT_ALLOWED_IMAGE_EXT) => {
+NotesgenValidation.isImage = (file, allowedImgExt = NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT) => {
     let result = false;
     const fileType = (file && file['type']) ? file['type'] : false;
 
@@ -139,7 +139,7 @@ ValidationHelper.isImage = (file, allowedImgExt = ValidationHelper.DEFAULT_ALLOW
     return result;
 }
 
-ValidationHelper.isValidImageSize = (file, size = ValidationHelper.DEFAULT_MAX_FILE_SIZE) => {
+NotesgenValidation.isValidImageSize = (file, size = NotesgenValidation.DEFAULT_MAX_FILE_SIZE) => {
     let result = true;
     const currentImageSize = (file) ? parseFloat(file.size / 1024 / 1024).toFixed(2) : 0;
 
@@ -160,7 +160,7 @@ ValidationHelper.isValidImageSize = (file, size = ValidationHelper.DEFAULT_MAX_F
  *
  * @comment This function validate the file with following extensions.
  */
-ValidationHelper.isDoc = (file) => {
+NotesgenValidation.isDoc = (file) => {
  
     let result = false;
     const AcceptedFileTypes = ["pdf", 'doc', "docx", 'ppt', 'pptx']
@@ -184,7 +184,7 @@ ValidationHelper.isDoc = (file) => {
  *
  * @comment This function validate the size of document file.
  */
-ValidationHelper.isValidDocSize = (file) => {
+NotesgenValidation.isValidDocSize = (file) => {
     let result = false;
     if (file.size / 1024 / 1024 < 25) {
         result = true;
@@ -192,4 +192,4 @@ ValidationHelper.isValidDocSize = (file) => {
     return result;
 }
 
-module.exports = ValidationHelper;
+module.exports = NotesgenValidation;
