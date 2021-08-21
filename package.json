@@ -1,5 +1,5 @@
 {
-  "name": "ng-validation",
+  "name": "notesgen-validation",
   "version": "1.0.0",
   "description": "All type of form validations on a website",
   "main": "index.js",
