@@ -6,7 +6,7 @@ this package contain all type of validations
 ```
 import NotesgenValidation from 'notesgen-validation';
 
-
+// simple usage
 const result = NotesgenValidation.isNumber(123123);
 
 // use this function to validate the complete form.
@@ -50,5 +50,5 @@ submitForm = async () => {
 }
 ```
 
-
-it is a basic validator if any validator is missing, let us know on 
+#About Us
+It is a basic validator if any validator is missing, please raise an issue.
