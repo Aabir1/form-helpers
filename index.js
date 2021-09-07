@@ -1,11 +1,32 @@
+/**
+ * Notesgen Validation contains all possible validations
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 let NotesgenValidation = {};
 
+/**
+ * default allowed images
+ */
 NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT = [
     'image/gif', 'image/jpeg', 'image/png', 'image/jpg'
 ];
+
+/**
+ * default max allowed size
+ */
 NotesgenValidation.DEFAULT_MAX_FILE_SIZE = 2; //in mb
 
-
+/**
+ * Check weather a field is empty or not
+ *
+ * @param {*} field 
+ * @param {boolean} isDateField 
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.isEmpty = (field, isDateField = false) => {
     let result = true;
 
@@ -28,6 +49,17 @@ NotesgenValidation.isEmpty = (field, isDateField = false) => {
     return result;
 }
 
+/**
+ * Check minimum and maximum length of a field
+ *
+ * @param {*} field 
+ * @param {Number} min 
+ * @param {Number} max 
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.minMaxLen = (field, min = 2, max = 256) => {
     let result = false;
 
@@ -40,7 +72,15 @@ NotesgenValidation.minMaxLen = (field, min = 2, max = 256) => {
     return result;
 }
 
-//validate weather value contains number
+/**
+ * Validate weather value contains number
+ *
+ * @param {String} field
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.containsNumber = (field) => {
     let result = false;
     if (field.match(/\d+/)) {
@@ -48,7 +88,16 @@ NotesgenValidation.containsNumber = (field) => {
     }
     return result;
 }
-//validate weather value contains uppercase
+
+/**
+ * Validate weather value contains uppercase
+ *
+ * @param {String} field
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.containsUpperCase = (field) => {
     let result = false;
     if (field.match(/[A-Z]/)) {
@@ -56,7 +105,16 @@ NotesgenValidation.containsUpperCase = (field) => {
     }
     return result;
 }
-//check weather value only contains numbers
+
+/**
+ * Validate weather value only contains numbers
+ *
+ * @param {String} field
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.isNumber = (field) => {
     let result = true;
     if (isNaN(field)) {
@@ -65,7 +123,15 @@ NotesgenValidation.isNumber = (field) => {
     return result;
 }
 
-//validate weather value contains special characters
+/**
+ * Validate weather value contains special characters
+ *
+ * @param {String} field
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.containsSpecialCharacters = (field) => {
     let result = false;
     if (!field.match(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/)) {
@@ -74,7 +140,15 @@ NotesgenValidation.containsSpecialCharacters = (field) => {
     return result;
 }
 
-
+/**
+ * Validate weather value is email or not
+ *
+ * @param {String} email
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.isEmail = (email) => {
     let result = false;
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -84,7 +158,16 @@ NotesgenValidation.isEmail = (email) => {
     return result;
 }
 
-NotesgenValidation.isPhone = (phone) => {
+/**
+ * Validate weather value is phone or not
+ *
+ * @param {String} phone
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
+NotesgenValidation.isPhone = (phone, OPTIONS = { min: 8, max: 14 }) => {
     let result = false;
     if (phone && phone.match(/^\d{8,14}$/)) {
         result = true;
@@ -92,6 +175,15 @@ NotesgenValidation.isPhone = (phone) => {
     return result;
 }
 
+/**
+ * Validate weather value is url or not
+ *
+ * @param {String} string
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 NotesgenValidation.isUrl = (string) => {
     if (string && (string.includes('http://') || string.includes('')))
         var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -114,21 +206,17 @@ NotesgenValidation.isUrl = (string) => {
     return result;
 }
 
-NotesgenValidation.getYoutubeUrl = (url) => {
-    let result = false;
-
-    if (url != undefined || url != '') {
-        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-        var match = url.match(regExp);
-        if (match && match[2].length == 11) {
-            result = 'https://www.youtube.com/embed/' + match[2];
-        }
-    }
-
-    return result;
-}
-
-NotesgenValidation.isImage = (file, allowedImgExt = NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT) => {
+/**
+ * Validate weather value is file or not
+ *
+ * @param {File} file
+ * @param {Array} allowedImgExt [ check NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT ]
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
+NotesgenValidation.isFile = (file, allowedImgExt = NotesgenValidation.DEFAULT_ALLOWED_IMAGE_EXT) => {
     let result = false;
     const fileType = (file && file['type']) ? file['type'] : false;
 
@@ -139,7 +227,17 @@ NotesgenValidation.isImage = (file, allowedImgExt = NotesgenValidation.DEFAULT_A
     return result;
 }
 
-NotesgenValidation.isValidImageSize = (file, size = NotesgenValidation.DEFAULT_MAX_FILE_SIZE) => {
+/**
+ * Validate weather value is image or not
+ *
+ * @param {File} file
+ * @param {Integer} size [ in mb check NotesgenValidation.DEFAULT_MAX_FILE_SIZE ]
+ *
+ * @returns {boolean} result
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
+NotesgenValidation.isValidFileSize = (file, size = NotesgenValidation.DEFAULT_MAX_FILE_SIZE) => {
     let result = true;
     const currentImageSize = (file) ? parseFloat(file.size / 1024 / 1024).toFixed(2) : 0;
 
@@ -150,45 +248,27 @@ NotesgenValidation.isValidImageSize = (file, size = NotesgenValidation.DEFAULT_M
     return result;
 }
 
-
 /**
- * @param {object} file
+ * Validate Password should be at 
+ * least 8 characters 
+ * with at least 1 Upper case, 
+ * 1 lower case, 1 number and 
+ * 1 special character.
+ *
+ * @param {String|Number} password
  *
  * @returns {boolean} result
  *
- * @author Gaurav Goyal <gaurav043goyal@gmail.com>
- *
- * @comment This function validate the file with following extensions.
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
  */
-NotesgenValidation.isDoc = (file) => {
- 
+ValidationHelper.isValidPassword = (password) => {
     let result = false;
-    const AcceptedFileTypes = ["pdf", 'doc', "docx", 'ppt', 'pptx']
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,256}$/;
 
-    let ext = file.name.split(".").slice(-1).pop().toLowerCase();
-
-    if (AcceptedFileTypes.includes(ext.toLowerCase())) {
+    if (regex.test(password)) {
         result = true;
     }
-    return result;
 
-}
-
-
-/**
- * @param {object} file
- *
- * @returns {boolean} result
- *
- * @author Gaurav Goyal <gaurav043goyal@gmail.com>
- *
- * @comment This function validate the size of document file.
- */
-NotesgenValidation.isValidDocSize = (file) => {
-    let result = false;
-    if (file.size / 1024 / 1024 < 25) {
-        result = true;
-    }
     return result;
 }
 
