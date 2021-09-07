@@ -30,10 +30,10 @@ validate = () => {
         isValid = false
     }
 
-    if (!NotesgenValidation.isImage(file)) {
+    if (!NotesgenValidation.isFile(file)) {
         errors.image = 'Please select valid image.';
         result = false;
-    } else if (!NotesgenValidation.isValidImageSize(file)) {
+    } else if (!NotesgenValidation.isValidFileSize(file)) {
         errors.image = 'Image should not be greater than 2MB.';
         result = false;
     }
@@ -51,4 +51,4 @@ submitForm = async () => {
 ```
 
 #About Us
-It is a basic validator if any validator is missing, please raise an issue.
+Ift is a basic validator if any validator is missing, please raise an issue.
